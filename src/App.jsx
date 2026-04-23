@@ -1,6 +1,4 @@
-import SabPaisaPaymentForm from "./SabPaisaPaymentForm";
-import CryptoJS from 'crypto-js';
-import { sabpaisaConfig } from './sabpaisaConfig';
+import { createPaymentSession, readPaymentResult } from './sabpaisaPayment';
 import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Search, 
@@ -8,31 +6,21 @@ import {
   Mail, 
   Phone, 
   ShieldCheck, 
-  ExternalLink, 
   Globe, 
-  Briefcase, 
   Heart, 
   MessageSquare, 
   Fingerprint, 
   Users, 
   Info,
-  Tag,
   Sparkles,
   Lock,
   Eye,
-  ArrowRight,
-  ChevronRight,
   ShieldAlert,
   Trash2,
   Smartphone,
   Loader2,
   CheckCircle,
-  AlertTriangle,
-  Zap,
   Activity,
-  BrainCircuit,
-  ShieldQuestion,
-  Wand2,
   Flame,
   Scale,
   Compass,
@@ -78,55 +66,45 @@ const App = () => {
   const [adminClicks, setAdminClicks] = useState(0);
 
   // --- Payment States ---
-  const [paymentStatus, setPaymentStatus] = useState('idle'); 
-  const [txnId, setTxnId] = useState('');
+  const [paymentStatus, setPaymentStatus] = useState('idle');
   const [txnError, setTxnError] = useState('');
-  const [timeLeft, setTimeLeft] = useState(120); 
+  const [checkoutUrl, setCheckoutUrl] = useState(null);
+  const [pendingPaymentType, setPendingPaymentType] = useState(null);
 
-  // App component ke andar ek naya state add karein
-  const [initPayment, setInitPayment] = useState(false);
-  const [paymentData, setPaymentData] = useState(null);
-
-  const startSabPaisaPayment = (amount, type = 'reveal') => {
-    const data = {
-      clientCode: sabpaisaConfig.clientCode,
-      transUserName: "YOUR_USERNAME", // Portal se lein
-      transUserPassword: "YOUR_PASSWORD", // Portal se lein
-      authKey: "YOUR_ENCRYPTION_KEY", // Portal se lein
-      authIV: "YOUR_ENCRYPTION_IV", // Portal se lein
-      callbackUrl: `${sabpaisaConfig.returnUrl}/?payment_type=${type}`,
-      clientTxnId: (type === 'reveal' ? "TRC" : "WIPE") + Date.now(),
-      payerName: formData.fullName || "User",
-      payerEmail: formData.emails.split(',')[0]?.trim() || "user@tracethem.online",
-      payerMobile: formData.phones.split(',')[0]?.trim() || "9015528949",
-      amount: amount.toString(),
-      channelId: "npm", // SDK ke liye 'npm' zaroori hai
-      mcc: "0000", // Portal se confirm karein
-      transDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
-      url: "https://securepay.sabpaisa.in/SabPaisa/sabPaisaInit?v=1" // Live URL
-    };
-    
-    setPaymentData(data);
-    setInitPayment(true);
-  };
-
-  // --- Payment Redirect Handler ---
+  // --- SabPaisa Payment Return Handler (returnUrl breakout) ---
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const status = urlParams.get('status');
-    const paymentType = urlParams.get('payment_type');
+    if (window.self !== window.top) {
+      window.top.location.href = window.location.href;
+      return;
+    }
 
-    if (status === 'SUCCESS' || urlParams.get('paymentId')) { 
-      // V2 mein status check verify karna zaroori hai
-      if (paymentType === 'reveal') {
-        setIsRevealed(true);
-      } else if (paymentType === 'wipe') {
+    const result = readPaymentResult();
+    if (!result) return;
+
+    window.history.replaceState({}, document.title, window.location.pathname);
+
+    if (result.status === 'SUCCESS') {
+      const logs = JSON.parse(localStorage.getItem('transaction_logs') || '[]');
+      logs.push({
+        id: result.paymentId || result.merchantTxnId || `SP-${Date.now()}`,
+        amount: result.type === 'wipe' ? 1499 : 79,
+        date: new Date().toISOString(),
+        type: result.type === 'wipe' ? 'SabPaisa Wipe' : 'SabPaisa Reveal',
+        target: '',
+      });
+      localStorage.setItem('transaction_logs', JSON.stringify(logs));
+      window.dispatchEvent(new Event('storage'));
+
+      if (result.type === 'wipe') {
         setWipePaymentStatus('completed');
         setShowWipeModal(true);
+      } else {
+        setIsRevealed(true);
       }
-      
-      // Clean URL parameters
-      window.history.replaceState({}, document.title, window.location.pathname);
+    } else if (result.status === 'FAILED') {
+      setTxnError('Payment failed. Please try again.');
+    } else if (result.status === 'EXPIRED') {
+      setTxnError('Payment session expired. Please try again.');
     }
   }, []);
 
@@ -305,15 +283,65 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    let timer;
-    if (paymentStatus === 'pending' && timeLeft > 0) {
-      timer = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
-    } else if (timeLeft === 0 && paymentStatus === 'pending') {
-      setPaymentStatus('expired');
+  const handleRevealPayment = async () => {
+    setPaymentStatus('loading');
+    setTxnError('');
+    try {
+      const session = await createPaymentSession(79, 'reveal', {
+        name: formData.fullName || 'User',
+        email: formData.emails.split(',')[0]?.trim() || '',
+        phone: formData.phones.split(',')[0]?.trim() || '',
+      });
+      setPendingPaymentType('reveal');
+      setCheckoutUrl(session.checkoutUrl);
+      setPaymentStatus('checkout');
+    } catch (err) {
+      setTxnError(err.message || 'Failed to initiate payment. Please try again.');
+      setPaymentStatus('idle');
     }
-    return () => clearInterval(timer);
-  }, [paymentStatus, timeLeft]);
+  };
+
+  const handleWipePayment = async () => {
+    if (!wipeData.fullName.trim()) return;
+    setWipePaymentStatus('loading');
+    setTxnError('');
+    localStorage.setItem('pending_wipe_data', JSON.stringify({
+      fullName: wipeData.fullName.toLowerCase().trim(),
+      emails: '',
+      phones: '',
+    }));
+    try {
+      const session = await createPaymentSession(1499, 'wipe', {
+        name: wipeData.fullName || 'User',
+        email: '',
+        phone: '',
+      });
+      setPendingPaymentType('wipe');
+      setCheckoutUrl(session.checkoutUrl);
+      setWipePaymentStatus('checkout');
+    } catch (err) {
+      setTxnError(err.message || 'Failed to initiate payment. Please try again.');
+      setWipePaymentStatus('idle');
+    }
+  };
+
+  const closeCheckout = () => {
+    setCheckoutUrl(null);
+    setPendingPaymentType(null);
+    setPaymentStatus('idle');
+    setWipePaymentStatus('idle');
+  };
+
+  const downloadLogs = (key) => {
+    const data = localStorage.getItem(key) || '[]';
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${key}_${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   const simulateDiscovery = async (platform, data) => {
     // --- Traffic Simulation (Dodge Inspect/Network Tab) ---
@@ -832,18 +860,23 @@ const App = () => {
             </div>
 
             <div className="w-full space-y-4 relative z-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {initPayment && paymentData && paymentData.amount === "79" && (
-  <div className="mt-4">
-    <SabPaisaPaymentForm 
-      formData={paymentData} 
-      onResponse={(res) => handlePaymentResponse(res)} 
-    />
-  </div>
-)}
+              <button
+                onClick={handleRevealPayment}
+                disabled={paymentStatus === 'loading' || paymentStatus === 'checkout'}
+                className="w-full py-5 md:py-6 bg-sky-600 text-white rounded-2xl md:rounded-3xl font-black text-[10px] md:text-xs uppercase tracking-[0.25em] shadow-2xl shadow-sky-600/30 hover:bg-sky-700 active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-60"
+              >
+                {paymentStatus === 'loading' ? (
+                  <><Loader2 className="animate-spin" size={18} /> Preparing Checkout...</>
+                ) : (
+                  <><Lock size={16} /> Unlock Full Report — ₹79</>
+                )}
+              </button>
 
-              
-              </div>
+              {txnError && (
+                <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-[9px] font-bold text-rose-400 uppercase tracking-widest text-center">
+                  {txnError}
+                </div>
+              )}
 
               <div className="flex flex-col items-center gap-3">
                 <div className="flex items-center gap-2 text-[9px] font-black text-slate-500 uppercase tracking-widest">
@@ -852,43 +885,6 @@ const App = () => {
                 <button onClick={() => setShowSummary(false)} className="text-[9px] font-black text-slate-600 uppercase tracking-[0.2em] hover:text-slate-400 transition-colors">Return to Scan Area</button>
               </div>
             </div>
-            
-            {paymentStatus === 'initiating' && (
-              <div className="mt-8 md:mt-10 w-full p-8 bg-white/5 rounded-[2rem] border border-white/10 animate-in slide-in-from-bottom-10 duration-500 relative z-20">
-                <div className="flex items-center justify-center gap-3 mb-6">
-                  <Loader2 className="animate-spin text-rose-500" size={24} />
-                  <p className="text-[11px] font-black text-white uppercase tracking-[0.3em]">Payment Verification in Progress</p>
-                </div>
-                
-                <button
-                  onClick={() => {
-                    const logs = JSON.parse(localStorage.getItem('transaction_logs') || '[]');
-                    const newLog = {
-                      id: `SP-${Date.now()}`,
-                      amount: 79,
-                      date: new Date().toISOString(),
-                      type: 'SabPaisa Reveal',
-                      target: formData.fullName
-                    };
-                    logs.push(newLog);
-                    localStorage.setItem('transaction_logs', JSON.stringify(logs));
-                    
-                    // Force a storage event for the admin panel to detect
-                    window.dispatchEvent(new Event('storage'));
-                    
-                    setPaymentStatus('idle');
-                    setIsRevealed(true);
-                  }}
-                  className="w-full py-5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl font-black text-xs uppercase tracking-[0.25em] shadow-lg shadow-emerald-900/20 transition-all active:scale-95"
-                >
-                  Verify Payment Completion
-                </button>
-                <p className="mt-4 text-[9px] font-bold text-slate-500 uppercase tracking-widest leading-relaxed">
-                  Click after you complete the transaction in your UPI app.
-                </p>
-              </div>
-            )}
-            {paymentStatus === 'submitted' && <div className="py-8 md:py-10"><CheckCircle className="text-emerald-500 mx-auto mb-4 md:mb-6 scale-110 md:scale-125" size={40} md:size={48} /><h2 className="text-2xl md:text-3xl font-black text-slate-900 uppercase">Verified.</h2><Loader2 className="animate-spin text-emerald-500 mx-auto mt-8 md:mt-10" /></div>}
           </div>
         </div>
       )}
@@ -908,78 +904,19 @@ const App = () => {
                   <input value={wipeData.fullName} onChange={(e) => setWipeData({...wipeData, fullName: e.target.value})} placeholder="Full Name to Wipe" className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-rose-200" />
                   <p className="text-[9px] text-slate-400 px-2 leading-relaxed italic">You will be asked for emails/phones after payment verification.</p>
                 </div>
-                <div className="grid grid-cols-1 gap-4">
-                  {initPayment && paymentData && paymentData.amount === "1499" && (
-  <div className="mt-4">
-    <SabPaisaPaymentForm 
-      formData={paymentData} 
-      onResponse={(res) => handlePaymentResponse(res)} 
-    />
-  </div>
-)}
-                  
-                  <button 
-                    disabled={!wipeData.fullName.trim()}
-                    onClick={() => {
-                      localStorage.setItem('pending_wipe_data', JSON.stringify({
-                        fullName: wipeData.fullName.toLowerCase().trim(),
-                        emails: '',
-                        phones: ''
-                      }));
-                      window.location.href = UPI_WIPE;
-                      setWipePaymentStatus('initiating');
-                    }} 
-                    className="w-full py-5 bg-white border-2 border-slate-100 text-slate-900 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-slate-50 disabled:opacity-50 transition-all flex items-center justify-center gap-3"
-                  >
-                    <Activity size={18} className="text-emerald-600" /> Fast UPI Pay
-                  </button>
-                </div>
+                <button
+                  disabled={!wipeData.fullName.trim() || wipePaymentStatus === 'loading' || wipePaymentStatus === 'checkout'}
+                  onClick={handleWipePayment}
+                  className="w-full py-5 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-slate-800 disabled:opacity-50 transition-all flex items-center justify-center gap-3 shadow-xl"
+                >
+                  {wipePaymentStatus === 'loading' ? (
+                    <><Loader2 className="animate-spin" size={18} /> Preparing Checkout...</>
+                  ) : (
+                    <><Trash2 size={18} /> Secure My Trace — ₹1,499</>
+                  )}
+                </button>
                 {txnError && <p className="text-[10px] font-bold text-rose-500 uppercase tracking-widest text-center animate-pulse">{txnError}</p>}
                 <button onClick={() => setShowWipeModal(false)} className="text-[10px] font-black text-slate-300 uppercase tracking-widest hover:text-slate-500 w-full">Cancel</button>
-              </div>
-            )}
-
-            {wipePaymentStatus === 'initiating' && (
-              <div className="py-10 animate-in fade-in duration-500">
-                <div className="flex flex-col items-center justify-center mb-8">
-                  <Loader2 className="animate-spin text-rose-500 mb-4" size={40} />
-                  <p className="font-black text-xs uppercase tracking-[0.3em] text-slate-400">Securing Secure Node...</p>
-                </div>
-                
-                <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-                  <button
-                    onClick={() => {
-                      const logs = JSON.parse(localStorage.getItem('transaction_logs') || '[]');
-                      const newLog = {
-                        id: `SP-${Date.now()}`,
-                        amount: 1499,
-                        date: new Date().toISOString(),
-                        type: 'SabPaisa Wipe',
-                        target: wipeData.fullName
-                      };
-                      logs.push(newLog);
-                      localStorage.setItem('transaction_logs', JSON.stringify(logs));
-                      
-                      // Force a storage event for the admin panel to detect
-                      window.dispatchEvent(new Event('storage'));
-                      
-                      setWipePaymentStatus('completed');
-                    }}
-                    className="w-full py-5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl transition-all active:scale-95"
-                  >
-                    I Completed Payment
-                  </button>
-                  <p className="mt-4 text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed">
-                    Confirm after completing the UPI transaction.
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {wipePaymentStatus === 'submitted' && (
-              <div className="py-10">
-                <Loader2 className="animate-spin text-rose-500 mx-auto mb-4" size={32} />
-                <p className="font-black text-[10px] uppercase tracking-widest text-slate-400">Verifying Payment...</p>
               </div>
             )}
 
@@ -1186,6 +1123,33 @@ const App = () => {
             </div>
             
             <p className="mt-10 text-center text-[9px] font-black text-slate-200 uppercase tracking-[0.5em]">Intel Console Access Restricted</p>
+          </div>
+        </div>
+      )}
+
+      {/* SabPaisa iFrame Checkout Modal */}
+      {checkoutUrl && (
+        <div className="fixed inset-0 z-[400] flex items-center justify-center p-4 md:p-6 bg-slate-950/95 backdrop-blur-xl">
+          <div className="bg-white w-full max-w-[520px] rounded-[2rem] shadow-2xl border border-slate-200 overflow-hidden animate-in zoom-in duration-500 flex flex-col" style={{ maxHeight: '90vh' }}>
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-sky-50 rounded-xl"><ShieldCheck size={18} className="text-sky-500" /></div>
+                <div>
+                  <p className="text-xs font-black text-slate-800 uppercase tracking-wider">Secure Payment</p>
+                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Powered by SabPaisa</p>
+                </div>
+              </div>
+              <button onClick={closeCheckout} className="p-2 hover:bg-slate-50 rounded-full transition-colors">
+                <AlertCircle size={20} className="text-slate-300" />
+              </button>
+            </div>
+            <iframe
+              src={checkoutUrl}
+              className="w-full flex-1 border-none"
+              style={{ minHeight: '600px' }}
+              allow="payment"
+              title="SabPaisa Checkout"
+            />
           </div>
         </div>
       )}
