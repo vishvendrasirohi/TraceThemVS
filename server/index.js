@@ -1,16 +1,17 @@
 import express from "express";
 import crypto from "crypto";
-import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-app.use(cors());
 app.use(express.json());
 
 const {
   SP_MERCHANT_ID = "YOUR_MERCHANT_ID",
   SP_API_KEY = "YOUR_API_KEY",
   SP_SECRET_KEY = "YOUR_SECRET_KEY",
-  SP_ENV = "staging",
+  SP_ENV = "production",
   SP_RETURN_URL = "https://tracethem.online/payment/result",
   PORT = "3001",
 } = process.env;
@@ -66,8 +67,6 @@ app.post("/api/create-payment", async (req, res) => {
       timestamp,
     };
 
-    console.log("Calling SabPaisa API:", SABPAISA_API);
-
     const sabRes = await fetch(SABPAISA_API, {
       method: "POST",
       headers: {
@@ -102,6 +101,12 @@ app.post("/api/create-payment", async (req, res) => {
   }
 });
 
+const distPath = path.join(__dirname, "..", "dist");
+app.use(express.static(distPath));
+app.get("/{*splat}", (req, res) => {
+  res.sendFile(path.join(distPath, "index.html"));
+});
+
 app.listen(Number(PORT), () => {
-  console.log(`Payment server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
