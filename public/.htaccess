@@ -1,0 +1,10 @@
+Options -MultiViews
+RewriteEngine On
+
+# ── API routes → PHP files (no extension needed in JS fetch calls) ────────────
+RewriteRule ^api/create-payment$  api/create-payment.php  [L]
+RewriteRule ^api/osint-enrich$    api/osint-enrich.php    [L]
+
+# ── React SPA routing — all other non-file URLs → index.html ─────────────────
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]

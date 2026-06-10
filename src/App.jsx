@@ -104,8 +104,8 @@ const App = () => {
       }
     } else if (result.status === 'FAILED') {
       setTxnError('Payment failed. Please try again.');
-    } else if (result.status === 'EXPIRED') {
-      setTxnError('Payment session expired. Please try again.');
+    } else if (result.status === 'ABORTED') {
+      setTxnError('Payment was cancelled. Please try again.');
     }
   }, []);
 

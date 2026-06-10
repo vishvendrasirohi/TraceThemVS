@@ -7,7 +7,7 @@ export async function createPaymentSession(amount, type, payerInfo) {
     body: JSON.stringify({
       amount,
       type,
-      customerName: payerInfo.name || "User",
+      customerName:  payerInfo.name  || "User",
       customerEmail: payerInfo.email || "user@tracethem.online",
       customerPhone: payerInfo.phone || "9999999999",
     }),
@@ -23,13 +23,15 @@ export async function createPaymentSession(amount, type, payerInfo) {
 
 export function readPaymentResult() {
   const params = new URLSearchParams(window.location.search);
+  // SabPaisa PG 3.0 sends: status, sabpaisaTxnId, clientTxnId
+  // We also append: type, merchantTxnId (our own params in the returnUrl)
   const status = params.get("status");
   if (!status) return null;
 
   return {
-    status,
-    merchantTxnId: params.get("merchantTxnId") || "",
-    paymentId: params.get("paymentId") || "",
-    type: params.get("type") || "reveal",
+    status,                                                              // SUCCESS | FAILED | ABORTED
+    paymentId:    params.get("sabpaisaTxnId") || params.get("paymentId") || "",
+    merchantTxnId: params.get("clientTxnId")  || params.get("merchantTxnId") || "",
+    type:         params.get("type") || "reveal",
   };
 }
