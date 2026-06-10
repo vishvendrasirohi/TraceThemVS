@@ -66,7 +66,12 @@ export default async function handler(req, res) {
       timestamp
     );
 
-    const returnUrl = `${SP_RETURN_URL}?type=${type}&merchantTxnId=${merchantTxnId}`;
+    const requestOrigin = req.headers?.origin || "";
+    const isLocalDev = requestOrigin.includes("localhost") || requestOrigin.includes("127.0.0.1");
+    const baseReturnUrl = isLocalDev
+      ? `${requestOrigin}/payment/result`
+      : SP_RETURN_URL;
+    const returnUrl = `${baseReturnUrl}?type=${type}&merchantTxnId=${merchantTxnId}`;
 
     const payload = {
       merchantId: SP_MERCHANT_ID,
