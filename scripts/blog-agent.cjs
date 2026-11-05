@@ -452,6 +452,41 @@ footer a{color:#6366f1;text-decoration:none}
   console.log('Blog index updated.');
 }
 
+function updateSitemap(newSlug, dateStr) {
+  // Fetch all blog posts from server
+  const list = ssh(`ls ${REMOTE_BLOG_DIR}/*.html 2>/dev/null | grep -v index.html | sort`).trim();
+  const files = list ? list.split('\n').map(f => path.basename(f, '.html')) : [];
+
+  const staticUrls = [
+    { loc: 'https://tracethem.online/', lastmod: dateStr, freq: 'weekly', pri: '1.0' },
+    { loc: 'https://tracethem.online/answers.html', lastmod: dateStr, freq: 'monthly', pri: '0.8' },
+    { loc: 'https://tracethem.online/blog/', lastmod: dateStr, freq: 'daily', pri: '0.9' },
+  ];
+
+  const blogUrls = files.map(slug => {
+    const datePart = slug.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] || dateStr;
+    return { loc: `https://tracethem.online/blog/${slug}.html`, lastmod: datePart, freq: 'monthly', pri: '0.7' };
+  });
+
+  const allUrls = [...staticUrls, ...blogUrls];
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${
+    allUrls.map(u => `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n    <changefreq>${u.freq}</changefreq>\n    <priority>${u.pri}</priority>\n  </url>`).join('\n')
+  }\n</urlset>\n`;
+
+  const tmp = path.join(os.tmpdir(), 'sitemap.xml');
+  fs.writeFileSync(tmp, xml);
+  scpUpload(tmp, '/home/u693315873/domains/tracethem.online/public_html/sitemap.xml');
+  fs.unlinkSync(tmp);
+
+  // Ping Google
+  try {
+    https.get('https://www.google.com/ping?sitemap=https://tracethem.online/sitemap.xml');
+    https.get('https://www.bing.com/ping?sitemap=https://tracethem.online/sitemap.xml');
+  } catch {}
+
+  console.log('Sitemap updated and Google pinged.');
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 async function main() {
   const { dateStr, slot } = todaySlot();
@@ -476,6 +511,7 @@ async function main() {
   fs.unlinkSync(tmp);
 
   updateBlogIndex();
+  updateSitemap(slug, dateStr);
   console.log(`Published: ${SITE_URL}/blog/${slug}.html`);
 }
 
