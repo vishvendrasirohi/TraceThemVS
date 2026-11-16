@@ -29,6 +29,64 @@ function getSshKeyFile() {
 
 // ─── Topic Pool ───────────────────────────────────────────────────────────────
 const TOPICS = [
+  // ── Antarvasna-style raw affair narratives (English) ──────────────────────
+  {
+    slug: 'bhabhi-affair-tinder-found',
+    title: 'My Bhabhi Was on Tinder — And My Bhaiya Had No Idea',
+    angle: 'First-person story — younger brother-in-law discovers bhabhi has an active Tinder profile while bhaiya is working in another city. Emotional, morally complex, real. The classic Indian family betrayal. How he decided to tell his bhaiya after verifying silently. Antarvasna-style narrative tone — intimate, confessional, raw — but no explicit sexual acts, just emotional and situational tension.',
+    keywords: ['bhabhi affair india', 'bhabhi tinder profile found', 'bhabhi dhoka de rahi hai kaise pata karein', 'bhabhi cheating husband'],
+    lang: 'en',
+  },
+  {
+    slug: 'office-affair-wife-colleague-india',
+    title: '"Late Meeting" Every Night — My Wife Was Having an Affair With Her Office Colleague',
+    angle: 'Husband slowly realizes his wife\'s "office colleague" is more than that. Classic Indian working-couple affair dynamic. Signs — changed phone password, new perfume, cold at home, warm at office. How he found the colleague\'s profile and verified the connection. Raw, real, no judgment — just truth.',
+    keywords: ['wife office affair india', 'wife colleague affair kaise pata karein', 'working wife affair india', 'pati ko dhoka diya office mein'],
+    lang: 'en',
+  },
+  {
+    slug: 'neighbour-affair-india-story',
+    title: 'She Was Having an Affair With the Neighbour — The Whole Colony Knew Except Her Husband',
+    angle: 'Classic Indian neighbour affair narrative. Wife meets neighbour when husband is at work. How the neighbourhood knew before the husband. Real-feeling story, intimate details of how affairs work in Indian housing societies. How the husband finally verified digitally.',
+    keywords: ['wife neighbour affair india', 'padosi se affair india', 'neighbour affair india story', 'colony mein affair kaise pata kare'],
+    lang: 'en',
+  },
+  {
+    slug: 'honeymoon-tinder-active-husband',
+    title: 'We Were on Our Honeymoon — His Tinder Was Still Showing "Active Today"',
+    angle: 'New bride discovers husband\'s dating app active during honeymoon. The shock of discovering this in what should be the most romantic moment. How she checked without confronting. What happened next. Real Indian marriage reality.',
+    keywords: ['husband tinder active honeymoon', 'naya shadi tinder cheating', 'honeymoon mein husband dating app', 'newly married husband dating app india'],
+    lang: 'en',
+  },
+  {
+    slug: 'second-marriage-hidden-first-wife-india',
+    title: 'He Was Already Married — And His First Wife Was in the Same City',
+    angle: 'Woman discovers her fiancé has a living wife from a first marriage that was never disclosed. Second marriage fraud in India. How his digital footprint — Facebook, old LinkedIn, Shaadi profile — revealed the truth. Common fraud in Tier 2 cities.',
+    keywords: ['already married fraud india', 'second marriage hidden first wife', 'bigamy india matrimonial fraud', 'shaadi se pehle check karo india'],
+    lang: 'en',
+  },
+  {
+    slug: 'sugar-daddy-dating-india-exposed',
+    title: 'My Father-in-Law Was on a Sugar Dating App — The Family Secret That Destroyed Everything',
+    angle: 'Adult son discovers his father-in-law has an active profile on a sugar dating platform. Family drama, generational hypocrisy. How it was verified silently. The complexity of confronting elders in Indian families.',
+    keywords: ['sugar dating india exposed', 'older man dating app india', 'sasur affair india', 'indian man affair app'],
+    lang: 'en',
+  },
+  {
+    slug: 'lesbian-affair-india-hidden-marriage',
+    title: 'My Wife Was in a Secret Relationship With Her "Best Friend" — What I Found Online',
+    angle: 'Husband discovers wife\'s relationship with her female best friend goes beyond friendship. Sensitive, non-judgmental tone. How her digital profiles told the story. The reality of hidden LGBTQ+ relationships within Indian marriages. Compassionate but honest.',
+    keywords: ['wife secret relationship india', 'hidden relationship marriage india', 'partner secret life india', 'wife best friend affair india'],
+    lang: 'en',
+  },
+  {
+    slug: 'divorce-hidden-assets-india-digital',
+    title: 'During Our Divorce He Claimed to Be Broke — His LinkedIn Said He Was a Director at 3 Companies',
+    angle: 'Wife discovers husband hiding income and company directorships during divorce proceedings. Digital footprint contradicts sworn financial statements. How Indian women can verify husband\'s real financial status. Very high intent audience — divorce + hidden assets.',
+    keywords: ['husband hiding money divorce india', 'check husband assets india', 'divorce hidden income india', 'husband fake poor divorce india'],
+    lang: 'en',
+  },
+
   // ── Shameless / Direct (English) ──────────────────────────────────────────
   {
     slug: 'husband-tinder-india-caught',
@@ -193,6 +251,64 @@ const TOPICS = [
     keywords: ['khud ko online search karo', 'apna digital footprint kaise hatayein', 'purana dating profile delete kaise karein'],
     lang: 'hi',
   },
+
+  // ── Antarvasna-style Hindi narratives ──────────────────────────────────────
+  {
+    slug: 'pati-ka-affair-daftar-mein-hindi',
+    title: 'पति का Affair Office में था — "Late Work" का सच जो मुझे 2 साल बाद पता चला',
+    angle: 'Antarvasna-style Hindi confession story. Wife narrates how she slowly suspected her husband\'s late nights and office trips. The signs she ignored. How a digital check on a colleague\'s name revealed everything. First-person, intimate, raw Hindi narrative. Ends with TraceThem as the tool she used.',
+    keywords: ['pati ka affair kaise pata kare', 'husband office affair hindi', 'pati dhoka de raha hai', 'husband cheating signs hindi'],
+    lang: 'hi',
+  },
+  {
+    slug: 'bhabhi-tinder-par-thi-hindi',
+    title: 'भाभी Tinder पर थीं — और भैया को कुछ नहीं पता था | एक सच्ची कहानी',
+    angle: 'Classic Indian bhabhi affair narrative in Hindi. Intimate family betrayal story. Younger brother accidentally discovers bhabhi\'s Tinder profile. Moral dilemma — tell bhaiya or stay silent. How he verified it was really her. Antarvasna-style confessional tone, emotionally heavy.',
+    keywords: ['bhabhi ka affair', 'bhabhi tinder par thi', 'bhabhi cheating story hindi', 'bhabhi dhoka de rahi hai'],
+    lang: 'hi',
+  },
+  {
+    slug: 'shaadi-ke-baad-affair-hindi-kahani',
+    title: 'शादी के 1 साल बाद पता चला — पत्नी का Affair शादी से पहले से चल रहा था',
+    angle: 'Husband discovers wife\'s pre-marriage relationship never ended and continued after marriage. Hindi emotional narrative. The pain of discovering the relationship was a lie from the start. How he found the proof through digital channels. Very popular search angle in India.',
+    keywords: ['shaadi ke baad affair pata chala', 'patni ka pehle se affair tha', 'wife old boyfriend affair india hindi', 'shaadi ke baad dhoka'],
+    lang: 'hi',
+  },
+  {
+    slug: 'delhi-mein-pati-tinder-par-hindi',
+    title: 'Delhi में रहने वाले पति Tinder पर थे — मुझे WhatsApp notification से पता चला',
+    angle: 'Delhi-specific story. Wife gets a WhatsApp forward about Tinder matches with her husband\'s photo. The shock, verification, confrontation. City-targeted for Delhi NCR audience. Hindi narrative.',
+    keywords: ['delhi pati tinder par', 'delhi husband cheating app', 'delhi mein partner check karo', 'delhi relationship fraud'],
+    lang: 'hi',
+  },
+  {
+    slug: 'mumbai-rishta-fraud-hindi',
+    title: 'Mumbai का वो "Doctor" जो Shaadi.com पर मिला — असल में कुछ और ही निकला',
+    angle: 'Mumbai girl meets Shaadi.com match claiming to be a doctor. Family verification reveals fraud — fake profession, possibly already married. Mumbai matrimonial fraud is rampant. How to verify any Mumbai rishta before meeting.',
+    keywords: ['mumbai matrimonial fraud hindi', 'mumbai shaadi fraud', 'mumbai rishta check karo', 'mumbai doctor fake profile matrimonial'],
+    lang: 'hi',
+  },
+  {
+    slug: 'bangalore-tech-boy-double-life',
+    title: 'Bangalore का "Software Engineer" — Tinder पर था, Gleeden पर भी, और तीन लड़कियों को Date कर रहा था',
+    angle: 'Bangalore IT sector dating fraud story in Hindi. Tech guy maintaining multiple relationships simultaneously across apps. Very common in Bangalore. How his online presence revealed the double life. City-targeted for Bangalore audience.',
+    keywords: ['bangalore software engineer cheating', 'bangalore tinder fraud hindi', 'bangalore IT boy dating multiple girls', 'check bangalore boyfriend hindi'],
+    lang: 'hi',
+  },
+  {
+    slug: 'hyderabad-nri-dulha-fraud-hindi',
+    title: 'Hyderabad का NRI दूल्हा — USA में girlfriend थी, यहाँ शादी कर रहा था',
+    angle: 'Hyderabad NRI groom fraud. Active girlfriend in the US, simultaneously pursuing arranged marriage in Hyderabad. How the family discovered his social media footprint. City-targeted Hindi story for Hyderabad/Telangana audience.',
+    keywords: ['hyderabad nri dulha fraud', 'hyderabad NRI marriage fraud hindi', 'hyderabad rishta check karo', 'NRI dulha Hyderabad verify'],
+    lang: 'hi',
+  },
+  {
+    slug: 'jaipur-ladki-catfishing-hindi',
+    title: 'Jaipur की उस लड़की ने जो बताया वो सब झूठ था — BharatMatrimony पर हुआ Catfishing',
+    angle: 'Male perspective — Jaipur man gets catfished on BharatMatrimony by a fake female profile. The story of how he was deceived, money lost, dignity hurt. How to verify any match in Jaipur before meeting. City-targeted for Rajasthan audience.',
+    keywords: ['jaipur matrimonial fraud hindi', 'jaipur catfishing bharatmatrimony', 'jaipur rishta fake profile', 'rajasthan shaadi fraud'],
+    lang: 'hi',
+  },
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -247,9 +363,11 @@ function callGemini(prompt) {
 function buildPrompt(topic, dateStr) {
   const isHindi = topic.lang === 'hi';
   if (isHindi) {
-    return `आप TraceThem (tracethem.online) के लिए एक content writer हैं। TraceThem एक Indian OSINT tool है जो Tinder, Gleeden, Shaadi.com, BharatMatrimony, LinkedIn, Instagram समेत 50+ platforms को silently scan करता है। कीमत: ₹79 प्रति report। कोई notification नहीं जाती।
+    return `आप TraceThem (tracethem.online) के लिए एक दिलेर content writer हैं। TraceThem एक Indian OSINT tool है जो Tinder, Gleeden, Shaadi.com, BharatMatrimony, LinkedIn, Instagram समेत 50+ platforms को silently scan करता है। ₹79 में। कोई notification नहीं जाती।
 
-नीचे दिए topic पर एक पूरा SEO blog post HTML में लिखें (सिर्फ body content, कोई <html>/<head> नहीं):
+Writing style: Antarvasna जैसी — raw, intimate, confessional, real-feeling। भावनाएं असली हों, dialogues real लगें, situation relatable हो। कोई judgment नहीं — बस सच्चाई। Sexual content नहीं, लेकिन emotional और situational tension भरपूर।
+
+नीचे दिए topic पर पूरा SEO blog post HTML में लिखें:
 
 TITLE: ${topic.title}
 ANGLE: ${topic.angle}
@@ -257,22 +375,22 @@ TARGET KEYWORDS: ${topic.keywords.join(', ')}
 DATE: ${dateStr}
 
 REQUIREMENTS:
-- 700-900 शब्द, Hindi में
-- Real लगने वाली story से शुरू करें — first person या third person, emotionally strong
-- 1-2 Reddit r/india या r/IndianRelationships के real-feeling quotes शामिल करें — जैसे "Priya, 29, Jaipur ने r/IndianRelationships पर लिखा: ..."
-- TraceThem को 1-2 बार naturally mention करें — spammy नहीं
-- CTA section: "tracethem.online पर silent scan करें — ₹79, उन्हें कोई notification नहीं मिलेगी।"
-- End में FAQ section (3-4 questions) schema-ready structure के साथ
-- <h2>, <h3>, <p>, <ul>, <li> tags use करें — clean HTML
-- <section class="faq"> at the end with <div class="faq-item"> containing <h3> and <p>
-- कोई markdown नहीं, कोई \`\`\`html नहीं
+- 800-1000 शब्द, Hindi में (Hinglish naturally)
+- Intimate first-person या close third-person narrative से शुरू — real names, specific city, specific detail
+- Real dialogues include करें — जैसे actually conversation हुई हो
+- 1-2 Quora India या r/IndianRelationships जैसे quotes
+- TraceThem naturally 1-2 बार — forced नहीं
+- CTA: "tracethem.online पर silent scan करें — ₹79, उन्हें कोई notification नहीं मिलेगी।"
+- FAQ section (3-4 Qs) <section class="faq"> → <div class="faq-item"> → <h3> + <p>
+- <h2>, <h3>, <p>, <ul>, <li> — clean HTML
+- कोई markdown, कोई \`\`\`html नहीं
 
-सिर्फ HTML content output करें, <article> tag से शुरू करें।`;
+<article> tag से शुरू करें।`;
   }
 
-  return `You are a no-bullshit content writer for TraceThem (tracethem.online) — an Indian OSINT people-search tool that silently scans 50+ platforms including Tinder, Gleeden, Shaadi.com, BharatMatrimony, LinkedIn, Instagram and more. Price: ₹79 per report. Zero notifications sent to the target.
+  return `You are a fearless content writer for TraceThem (tracethem.online) — an Indian OSINT people-search tool silently scanning 50+ platforms: Tinder, Gleeden, Shaadi.com, BharatMatrimony, LinkedIn, Instagram and more. ₹79 per scan. Zero notifications to the target.
 
-The tone is raw, real, like a close friend who has seen the worst of relationships and is telling the ugly truth. No corporate speak. No sanitizing. This is the content that people share at 2am when they can't sleep.
+Writing style: Think Antarvasna meets Vice India — intimate, confessional, emotionally raw. Real names, real cities, specific details that make it feel true. No sanitizing. No judgment. Just the ugly truth of modern Indian relationships. NOT explicit sexual content, but emotional and situational tension without limits.
 
 Write a full SEO blog post in HTML (body content only, no <html>/<head> tags) for:
 
@@ -282,18 +400,20 @@ TARGET KEYWORDS: ${topic.keywords.join(', ')}
 DATE: ${dateStr}
 
 REQUIREMENTS:
-- 750–950 words
-- Open with a visceral story hook — real names (Rahul, Priya, Meera, Arjun, etc.), specific details, real emotions. No "once upon a time" softness.
-- Include 1-2 Reddit-style quotes: "Meera, 31, Pune shared on r/IndianRelationships: [realistic quote]"
-- Reference current Indian social reality — arranged marriage pressure, NRI fraud, matrimonial app scams, affairs going mainstream
-- Mention TraceThem naturally 1-2 times as the solution — not like an ad
+- 850–1050 words
+- Open with an intimate story hook — specific person (Rahul, 34, Pune), specific situation, specific emotion. Pull the reader in like a confession.
+- Use real dialogue ("She said 'working late' for the 4th time that week. I didn't say anything. I just opened my laptop.")
+- Include city-specific details where relevant (Delhi NCR, Mumbai, Bangalore, Hyderabad, Jaipur, Lucknow, Chandigarh etc.)
+- 1-2 Quora India / r/IndianRelationships style quotes with names and cities
+- Reference the real social dynamics: arranged marriage pressure, working couple affairs, NRI fraud, matrimonial catfishing, office romances
+- Mention TraceThem once or twice as a natural solution — never like an ad
 - CTA near end: "Run a silent scan at tracethem.online — ₹79. They'll never know you checked."
-- End with FAQ section (3-4 Qs) using <section class="faq"> with <div class="faq-item"> → <h3> + <p>
+- FAQ section (3-4 Qs): <section class="faq"> with <div class="faq-item"> → <h3> + <p>
 - Use <h2>, <h3>, <p>, <ul>, <li> — clean HTML
-- Sprinkle Hindi words naturally: yaar, bhai, rishta, shaadi, sasuraal, jamai, bahu — not forced
-- Do NOT include markdown or \`\`\`html wrappers
+- Sprinkle Hindi naturally: yaar, bhai, bhabhi, rishta, shaadi, sasuraal, dhoka — not forced
+- Do NOT use markdown or \`\`\`html
 
-Output ONLY the HTML content starting from <article> tag.`;
+Output ONLY the HTML starting from <article> tag.`;
 }
 
 function wrapInPage(title, slug, content, topic, dateStr) {
