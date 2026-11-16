@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Your Partner Hiding Something? — TraceThem</title>
+<meta name="description" content="Scan 50+ dating apps in 60 seconds. Silent. ₹79 only. No one is notified.">
+<meta property="og:title" content="Is Your Partner Hiding Something?">
+<meta property="og:description" content="Scan Tinder, Gleeden, Shaadi & 50+ platforms silently. ₹79. Results in 60 seconds.">
+<meta property="og:image" content="https://tracethem.online/og-preview.png">
+<meta property="og:url" content="https://tracethem.online/lp">
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --dark: #0a0f1a;
+    --card: #111827;
+    --border: #1e293b;
+    --text: #f1f5f9;
+    --muted: #64748b;
+    --subtle: #1e293b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 20px 60px;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(239,68,68,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent, var(--dark));
+    pointer-events: none;
+  }
+
+  .brand {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+  .brand span { color: var(--red); }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fca5a5;
+    letter-spacing: 0.5px;
+    margin-bottom: 28px;
+  }
+  .pill::before { content: '●'; font-size: 8px; color: var(--red); }
+
+  h1 {
+    font-size: clamp(2.4rem, 7vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    max-width: 640px;
+    margin-bottom: 20px;
+  }
+  h1 .accent { color: var(--amber); }
+  h1 .soft { color: #94a3b8; font-weight: 700; }
+
+  .sub {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    color: #94a3b8;
+    max-width: 420px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  .cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 340px;
+    margin-bottom: 40px;
+  }
+  .cta-btn {
+    display: block;
+    width: 100%;
+    padding: 18px 32px;
+    background: var(--amber);
+    color: #0a0f1a;
+    font-size: 1.1rem;
+    font-weight: 800;
+    border-radius: 16px;
+    text-decoration: none;
+    letter-spacing: -0.3px;
+    box-shadow: 0 8px 32px rgba(245,158,11,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-align: center;
+  }
+  .cta-btn:active { transform: scale(0.97); }
+  .cta-reassure {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.3px;
+  }
+  .cta-reassure strong { color: #94a3b8; }
+
+  /* ── Platform strip ── */
+  .platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    max-width: 400px;
+    margin-bottom: 0;
+  }
+  .plat-tag {
+    background: var(--subtle);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+    white-space: nowrap;
+  }
+  .plat-tag.red { border-color: rgba(239,68,68,0.3); color: #fca5a5; }
+  .plat-tag.amber { border-color: rgba(245,158,11,0.3); color: #fcd34d; }
+
+  /* ── Stats row ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat {
+    background: var(--dark);
+    padding: 28px 16px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-num.amber { color: var(--amber); }
+  .stat-num.red { color: var(--red); }
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* ── Why section ── */
+  .section {
+    padding: 60px 20px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .section-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 32px;
+    text-align: center;
+    line-height: 1.25;
+  }
+  .section-title .accent { color: var(--red); }
+
+  .cards { display: flex; flex-direction: column; gap: 12px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .card-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    background: var(--subtle);
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .card-desc { font-size: 13px; color: #64748b; line-height: 1.5; }
+
+  /* ── How it works ── */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--subtle);
+    border: 1px solid #334155;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800; color: var(--amber);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .step-desc { font-size: 13px; color: #64748b; line-height: 1.5; }
+
+  /* ── Testimonials ── */
+  .testimonials { display: flex; flex-direction: column; gap: 12px; }
+  .testi {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+  }
+  .testi-quote {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  .testi-author {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* ── Price section ── */
+  .price-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .price-block::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .price-compare {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .price-compare s { color: #475569; }
+  .price-main {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 4px;
+    letter-spacing: -2px;
+  }
+  .price-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .price-features { list-style: none; text-align: left; margin-bottom: 28px; }
+  .price-features li {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: #cbd5e1;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-features li:last-child { border-bottom: none; }
+  .price-features li::before { content: '✓'; color: #22c55e; font-weight: 800; font-size: 15px; }
+
+  /* ── Bottom CTA ── */
+  .bottom-cta {
+    padding: 60px 20px;
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .bottom-cta h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .bottom-cta p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  /* ── Footer ── */
+  footer {
+    padding: 24px 20px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: #334155;
+  }
+  footer a { color: #475569; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="brand">Trace<span>Them</span>.online</div>
+  <div class="pill">50+ platforms · Silent scan · ₹79 only</div>
+  <h1>
+    Is Your Partner<br>
+    <span class="accent">Hiding</span> <span class="soft">Something?</span>
+  </h1>
+  <p class="sub">
+    We scan Tinder, Gleeden, Shaadi & 50+ platforms silently.<br>
+    They'll never know you checked.
+  </p>
+  <div class="cta-wrap">
+    <a href="https://tracethem.online" class="cta-btn">
+      Run a Free Check →
+    </a>
+    <p class="cta-reassure">No sign-up · <strong>Results in 60 sec</strong> · They're never notified</p>
+  </div>
+  <div class="platforms">
+    <span class="plat-tag red">Tinder</span>
+    <span class="plat-tag red">Gleeden</span>
+    <span class="plat-tag amber">Shaadi.com</span>
+    <span class="plat-tag">Bumble</span>
+    <span class="plat-tag">Grindr</span>
+    <span class="plat-tag amber">BharatMatrimony</span>
+    <span class="plat-tag">OnlyFans</span>
+    <span class="plat-tag">+44 more</span>
+  </div>
+</section>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="stat">
+    <span class="stat-num amber">50+</span>
+    <span class="stat-label">Platforms<br>scanned</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">60s</span>
+    <span class="stat-label">Time to<br>full report</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num red">₹79</span>
+    <span class="stat-label">Total cost.<br>Always.</span>
+  </div>
+</div>
+
+<!-- Why section -->
+<div class="section">
+  <h2 class="section-title">Why people <span class="accent">check.</span></h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">💍</div>
+      <div>
+        <div class="card-title">Before saying yes to a marriage proposal</div>
+        <div class="card-desc">Families spend ₹10,000–50,000 on physical checks. TraceThem does it digitally in 60 seconds for ₹79.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <div>
+        <div class="card-title">Something feels off with your partner</div>
+        <div class="card-desc">Late nights. Changed passwords. New phone habits. Trust your gut — verify silently before confronting.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <div>
+        <div class="card-title">Checking your own digital footprint</div>
+        <div class="card-desc">Want to know what your name reveals online? See what others see when they search for you.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">👔</div>
+      <div>
+        <div class="card-title">Employee or business partner verification</div>
+        <div class="card-desc">Before hiring or partnering — a quick digital character check that HR doesn't do.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- How it works -->
+<div class="section" style="padding-top:0">
+  <h2 class="section-title">How it <span class="accent">works.</span></h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <div class="step-title">Enter name, email or phone</div>
+        <div class="step-desc">Any combination. Even just a name or phone number works.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <div class="step-title">AI scans 50+ platforms silently</div>
+        <div class="step-desc">Tinder, Gleeden, Shaadi, LinkedIn, Instagram, Reddit and more — in parallel. No notification sent.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <div class="step-title">See 3 signals free</div>
+        <div class="step-desc">First 3 platform matches shown immediately. Decide if you want to unlock the full report.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <div class="step-title">Pay ₹79, see everything</div>
+        <div class="step-desc">Full DeepPersona™ report — all matches, profile links, risk score. Instant access via UPI or card.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Price -->
+<div class="section" style="padding-top:0">
+  <div class="price-block">
+    <p class="price-compare">Detective agencies charge <s>₹5,000–50,000</s>. We charge:</p>
+    <div class="price-main">₹79</div>
+    <p class="price-sub">One-time · No subscription · No hidden fees</p>
+    <ul class="price-features">
+      <li>50+ platform scan (dating, matrimonial, adult, social)</li>
+      <li>DeepPersona™ AI behavioral report</li>
+      <li>Direct profile links where found</li>
+      <li>Risk score out of 100</li>
+      <li>100% silent — target never notified</li>
+      <li>Results in 60 seconds</li>
+    </ul>
+    <a href="https://tracethem.online" class="cta-btn">Start Your Free Search →</a>
+  </div>
+</div>
+
+<!-- Social proof -->
+<div class="section" style="padding-top:0">
+  <h2 class="section-title">What people are <span class="accent">saying.</span></h2>
+  <div class="testimonials">
+    <div class="testi">
+      <p class="testi-quote">"He said he was not on any dating apps. TraceThem found him on Tinder, Bumble and Gleeden within seconds. I'm glad I checked before the engagement."</p>
+      <p class="testi-author">— Priya, Delhi</p>
+    </div>
+    <div class="testi">
+      <p class="testi-quote">"My family spent ₹15,000 on a detective for my sister's marriage verification. I did the same thing for ₹79. Same results, 100x faster."</p>
+      <p class="testi-author">— Rahul, Mumbai</p>
+    </div>
+    <div class="testi">
+      <p class="testi-quote">"I ran a check on myself first to see what it shows. Everything was accurate. Then I ran it on my fiancé. I'm glad I did."</p>
+      <p class="testi-author">— Anonymous, Bangalore</p>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom CTA -->
+<div class="bottom-cta">
+  <h2>Know the truth.<br><span style="color:var(--amber)">Before it's too late.</span></h2>
+  <p>Over 10 million arranged marriages happen in India every year with zero digital verification. That changes with TraceThem.</p>
+  <a href="https://tracethem.online" class="cta-btn" style="display:inline-block;width:auto;padding:18px 48px;font-size:1.05rem;">
+    Check Now — It's Free to Start →
+  </a>
+  <p style="margin-top:16px;font-size:11px;color:#334155;">No account required · 100% anonymous · ₹79 to unlock full report</p>
+</div>
+
+<footer>
+  <p>© 2024 TraceThem.online · <a href="https://tracethem.online">Home</a> · <a href="https://tracethem.online/blog/">Blog</a></p>
+  <p style="margin-top:8px;">OSINT-based public records search. For legal verification purposes only.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1200px;
+  height: 630px;
+  background: #0f172a;
+  font-family: 'Georgia', serif;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 100px;
+}
+.bg-glow {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(239,68,68,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.bg-glow2 {
+  position: absolute;
+  bottom: -150px;
+  left: -50px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.tag {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ef4444;
+  margin-bottom: 24px;
+}
+.headline {
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #f8fafc;
+  max-width: 820px;
+  margin-bottom: 32px;
+}
+.headline em {
+  color: #fbbf24;
+  font-style: normal;
+}
+.byline {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  color: #64748b;
+  letter-spacing: 0.5px;
+}
+.byline strong {
+  color: #94a3b8;
+}
+.logo {
+  position: absolute;
+  bottom: 50px;
+  right: 80px;
+  font-family: 'Arial', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #475569;
+  text-transform: uppercase;
+}
+.logo span {
+  color: #ef4444;
+}
+.divider {
+  width: 60px;
+  height: 3px;
+  background: #ef4444;
+  margin-bottom: 28px;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="bg-glow"></div>
+  <div class="bg-glow2"></div>
+  <div class="tag">True Story · tracethem.online</div>
+  <div class="divider"></div>
+  <div class="headline" id="headline">My Husband Was on Tinder<br>While I Was <em>Pregnant.</em></div>
+  <div class="byline">Real people. Real checks. <strong>Silent results.</strong></div>
+  <div class="logo">Trace<span>Them</span>.online</div>
+</div>
+</body>
+</html>
