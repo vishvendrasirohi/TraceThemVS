@@ -437,7 +437,7 @@ function wrapInPage(title, slug, content, topic, dateStr) {
 <meta name="keywords" content="${topic.keywords.join(', ')}">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${desc}">
-<meta property="og:image" content="${SITE_URL}/blog-og.jpg">
+<meta property="og:image" content="${SITE_URL}/blog-og.php?title=${encodeURIComponent(title)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="${SITE_URL}/blog/${slug}.html">
