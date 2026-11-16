@@ -377,57 +377,62 @@ function callGemini(prompt) {
 function buildPrompt(topic, dateStr) {
   const isHindi = topic.lang === 'hi';
   if (isHindi) {
-    return `आप TraceThem (tracethem.online) के लिए एक दिलेर content writer हैं। TraceThem एक Indian OSINT tool है जो Tinder, Gleeden, Shaadi.com, BharatMatrimony, LinkedIn, Instagram समेत 50+ platforms को silently scan करता है। ₹79 में। कोई notification नहीं जाती।
+    return `तुम TraceThem (tracethem.online) के लिए एक बेबाक कहानीकार हो। TraceThem एक Indian OSINT tool है — Tinder, Gleeden, Shaadi.com, BharatMatrimony, Grindr, Instagram, OnlyFans समेत 50+ platforms को चुपचाप scan करता है। ₹79 में। Target को कोई खबर नहीं होती।
 
-Writing style: Antarvasna जैसी — raw, intimate, confessional, real-feeling। भावनाएं असली हों, dialogues real लगें, situation relatable हो। कोई judgment नहीं — बस सच्चाई। Sexual content नहीं, लेकिन emotional और situational tension भरपूर।
+WRITING STYLE — Antarvasna + Vice India Hindi का मिला-जुला रूप:
+- कहानी असली लगनी चाहिए — real names, real city, real tension
+- Dialogues ऐसे जैसे actually हुई हो: "उसने कहा था वो office में है, पर उसका Tinder 'Active 2 minutes ago' दिखा रहा था।"
+- Emotional betrayal को deeply explore करो — झूठ, उम्मीद का टूटना, रात को अकेले रोना, वो touch जो अब meaningless लगता है
+- Sexual tension allowed है — physical closeness का guilt, नजरों का मिलना, जो होना चाहिए था पर नहीं हुआ — but कोई explicit sexual act नहीं
+- Hindi + Hinglish naturally mix करो: yaar, saali, bhabhi, dhoka, rishta, sasural, raat bhar, nazar, pal, dil
+- कोई judgment नहीं — बस raw, real truth
 
-नीचे दिए topic पर पूरा SEO blog post HTML में लिखें:
-
-TITLE: ${topic.title}
+TOPIC: ${topic.title}
 ANGLE: ${topic.angle}
-TARGET KEYWORDS: ${topic.keywords.join(', ')}
+KEYWORDS: ${topic.keywords.join(', ')}
 DATE: ${dateStr}
 
 REQUIREMENTS:
-- 800-1000 शब्द, Hindi में (Hinglish naturally)
-- Intimate first-person या close third-person narrative से शुरू — real names, specific city, specific detail
-- Real dialogues include करें — जैसे actually conversation हुई हो
-- 1-2 Quora India या r/IndianRelationships जैसे quotes
-- TraceThem naturally 1-2 बार — forced नहीं
-- CTA: "tracethem.online पर silent scan करें — ₹79, उन्हें कोई notification नहीं मिलेगी।"
-- FAQ section (3-4 Qs) <section class="faq"> → <div class="faq-item"> → <h3> + <p>
-- <h2>, <h3>, <p>, <ul>, <li> — clean HTML
-- कोई markdown, कोई \`\`\`html नहीं
+- 900-1100 शब्द
+- पहले paragraph में ही reader को hook करो — name, city, specific moment
+- कम से कम 3-4 real dialogues
+- 1-2 Quora India / Reddit IndianRelationships style quotes (name + city)
+- TraceThem का mention 1-2 बार natural तरीके से — ad की तरह नहीं
+- End में CTA: "tracethem.online पर silent scan करें — ₹79, उन्हें कोई notification नहीं मिलेगी।"
+- FAQ section (3-4 Qs): <section class="faq"> → <div class="faq-item"> → <h3> + <p>
+- Clean HTML: <h2>, <h3>, <p>, <ul>, <li>
+- कोई markdown नहीं, कोई \`\`\`html नहीं
 
 <article> tag से शुरू करें।`;
   }
 
-  return `You are a fearless content writer for TraceThem (tracethem.online) — an Indian OSINT people-search tool silently scanning 50+ platforms: Tinder, Gleeden, Shaadi.com, BharatMatrimony, LinkedIn, Instagram and more. ₹79 per scan. Zero notifications to the target.
+  return `You are a raw, fearless storyteller for TraceThem (tracethem.online) — an Indian OSINT tool silently scanning 50+ platforms: Tinder, Gleeden, Shaadi.com, BharatMatrimony, Grindr, OnlyFans, LinkedIn, Instagram and more. ₹79. Zero notifications sent.
 
-Writing style: Think Antarvasna meets Vice India — intimate, confessional, emotionally raw. Real names, real cities, specific details that make it feel true. No sanitizing. No judgment. Just the ugly truth of modern Indian relationships. NOT explicit sexual content, but emotional and situational tension without limits.
+WRITING STYLE — Antarvasna meets Vice India:
+- Write like a real person is confessing. First names, real cities, specific ordinary details that make it feel true (the 11:47pm text, the Swiggy order he placed from a different address, her perfume that wasn't hers)
+- Emotional betrayal is the core — the slow realization, the small lies that stack up, the moment it all clicks
+- Sexual tension is allowed — the charged glances, the physical distance that grows, the intimacy that disappears, the guilt of desire — but NO explicit sexual acts. The tension before the act, never the act itself
+- Real Indian social dynamics: joint family pressure, arranged marriage expectations, "log kya kahenge", the working-couple gap, NRI fraud, office romance, the WhatsApp that wasn't meant for you
+- Dialogue must feel real: "She said she was at her mother's. The Uber drop-off was 4 kilometres away."
+- Use Hindi words naturally in English text: yaar, dhoka, rishta, bhabhi, sasuraal, shaadi, raat ko, dil, nazar — woven in, not forced
 
-Write a full SEO blog post in HTML (body content only, no <html>/<head> tags) for:
-
-TITLE: ${topic.title}
+TOPIC: ${topic.title}
 ANGLE: ${topic.angle}
-TARGET KEYWORDS: ${topic.keywords.join(', ')}
+KEYWORDS: ${topic.keywords.join(', ')}
 DATE: ${dateStr}
 
 REQUIREMENTS:
-- 850–1050 words
-- Open with an intimate story hook — specific person (Rahul, 34, Pune), specific situation, specific emotion. Pull the reader in like a confession.
-- Use real dialogue ("She said 'working late' for the 4th time that week. I didn't say anything. I just opened my laptop.")
-- Include city-specific details where relevant (Delhi NCR, Mumbai, Bangalore, Hyderabad, Jaipur, Lucknow, Chandigarh etc.)
-- 1-2 Quora India / r/IndianRelationships style quotes with names and cities
-- Reference the real social dynamics: arranged marriage pressure, working couple affairs, NRI fraud, matrimonial catfishing, office romances
-- Mention TraceThem once or twice as a natural solution — never like an ad
+- 950–1100 words
+- Open with a specific person in a specific moment — pull them in by line 2
+- Minimum 3-4 real-feeling dialogues
+- 1-2 Quora India / r/IndianRelationships quotes with name and city
+- Mention TraceThem once or twice as a natural tool, never an ad
 - CTA near end: "Run a silent scan at tracethem.online — ₹79. They'll never know you checked."
-- FAQ section (3-4 Qs): <section class="faq"> with <div class="faq-item"> → <h3> + <p>
-- Use <h2>, <h3>, <p>, <ul>, <li> — clean HTML
-- Sprinkle Hindi naturally: yaar, bhai, bhabhi, rishta, shaadi, sasuraal, dhoka — not forced
-- Do NOT use markdown or \`\`\`html
+- FAQ section (3-4 Qs): <section class="faq"> → <div class="faq-item"> → <h3> + <p>
+- Clean HTML: <h2>, <h3>, <p>, <ul>, <li>
+- NO markdown, NO \`\`\`html
 
-Output ONLY the HTML starting from <article> tag.`;
+Output ONLY the HTML starting with <article>.`;
 }
 
 function wrapInPage(title, slug, content, topic, dateStr) {
@@ -481,6 +486,13 @@ article blockquote{border-left:3px solid #4f46e5;padding:12px 18px;margin:20px 0
 .cta-box p{color:#a5b4fc;margin-bottom:18px;font-size:1rem}
 .cta-box a{background:#4f46e5;color:#fff;padding:13px 32px;border-radius:9px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;letter-spacing:.01em}
 .cta-box a:hover{background:#4338ca}
+.read-next{margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.07)}
+.read-next h3{color:#94a3b8;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.read-next-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.read-next-cards a{display:block;background:#1e293b;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:16px 18px;text-decoration:none;color:#a5b4fc;font-size:.88rem;font-weight:600;line-height:1.45;transition:border-color .2s}
+.read-next-cards a:hover{border-color:#4f46e5;color:#fff}
+.read-next-cards a .arrow{display:block;color:#4f46e5;font-size:18px;margin-bottom:6px}
+@media(max-width:600px){.read-next-cards{grid-template-columns:1fr}}
 .faq{margin-top:44px;border-top:1px solid rgba(255,255,255,0.07);padding-top:32px}
 .faq>h2{color:#e2e8f0;font-size:1.15rem;margin-bottom:20px}
 .faq-item{margin-bottom:16px;padding:16px 20px;background:#1e293b;border-radius:10px;border:1px solid rgba(255,255,255,0.05)}
@@ -507,6 +519,7 @@ footer a{color:#6366f1;text-decoration:none}
     <p>${ctaText}</p>
     <a href="${SITE_URL}">${ctaBtn}</a>
   </div>
+  <div class="read-next" id="read-next"></div>
 </main>
 <footer>
   &copy; ${new Date().getFullYear()} <a href="${SITE_URL}">TraceThem</a> · <a href="${SITE_URL}/blog/">All Articles</a>
@@ -623,6 +636,37 @@ function updateSitemap(newSlug, dateStr) {
   console.log('Sitemap updated and Google pinged.');
 }
 
+function injectReadNext(remoteFile, currentSlug) {
+  // Get recent posts excluding current, build cards, inject via PHP one-liner
+  const list = ssh(
+    `ls ${REMOTE_BLOG_DIR}/*.html 2>/dev/null | grep -v index.html | sort -r | head -10`
+  ).trim();
+  if (!list) return;
+
+  const others = list.split('\n')
+    .map(f => path.basename(f, '.html'))
+    .filter(s => s !== currentSlug)
+    .slice(0, 2);
+
+  if (others.length === 0) return;
+
+  const cards = others.map(s => {
+    const noDate = s.replace(/^\d{4}-\d{2}-\d{2}-/, '');
+    const readable = noDate.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    return `<a href="${s}.html"><span class="arrow">&#8594;</span>${readable}</a>`;
+  }).join('');
+
+  const block = `<div class="read-next"><h3>Read Next</h3><div class="read-next-cards">${cards}</div></div>`;
+  // Write block to a temp file and use PHP to do the replacement (avoids shell quoting hell)
+  const escaped = block.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+  ssh(`php -r "
+\\$f='${remoteFile}';
+\\$h=file_get_contents(\\$f);
+\\$h=str_replace('<div class=\\"read-next\\" id=\\"read-next\\"></div>','${escaped}',\\$h);
+file_put_contents(\\$f,\\$h);
+"`);
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 async function main() {
   const { dateStr, slot } = todaySlot();
@@ -646,6 +690,7 @@ async function main() {
   scpUpload(tmp, remoteFile);
   fs.unlinkSync(tmp);
 
+  injectReadNext(remoteFile, slug);
   updateBlogIndex();
   updateSitemap(slug, dateStr);
   console.log(`Published: ${SITE_URL}/blog/${slug}.html`);
