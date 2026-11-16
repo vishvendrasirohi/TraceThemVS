@@ -194,10 +194,11 @@ const TOPICS = [
     lang: 'en',
   },
 
-  // ── Pure Hindi ─────────────────────────────────────────────────────────────
+  // ── Pure Hindi (with hinglish_title for OG card) ───────────────────────────
   {
     slug: 'pati-tinder-pe-tha-hindi',
     title: 'पति Tinder पर था — और मुझे 7 महीने बाद पता चला',
+    hinglish_title: 'Pati Tinder Par Tha — Mujhe 7 Mahine Baad Pata Chala',
     angle: 'पत्नी की नजरिए से पहले व्यक्ति में कहानी। पति का Tinder profile मिला। भावनात्मक, raw, सच्ची-लगने वाली कहानी। Hindi में पूरा article। TraceThem से चुपके से verify करने का तरीका।',
     keywords: ['पति tinder पर है कैसे पता करें', 'husband tinder check hindi', 'pati ka tinder profile kaise check karein'],
     lang: 'hi',
@@ -205,6 +206,7 @@ const TOPICS = [
   {
     slug: 'shaadi-se-pehle-ladke-ki-jaanch-hindi',
     title: 'शादी से पहले लड़के की Digital Life Check क्यों करनी चाहिए — एक जरूरी गाइड',
+    hinglish_title: 'Shaadi Se Pehle Ladke Ki Digital Life Check Kyun Karein',
     angle: 'Hindi guide for families doing rishta checks. Why physical background checks are not enough. What digital platforms reveal. Step by step TraceThem usage. Formal Hindi tone, family-friendly but direct.',
     keywords: ['shaadi se pehle background check hindi', 'ladke ki jaanch kaise karein', 'rishta check karne ka tarika'],
     lang: 'hi',
@@ -212,6 +214,7 @@ const TOPICS = [
   {
     slug: 'boyfriend-dating-app-par-tha-hindi',
     title: 'मेरा Boyfriend 3 साल से Relationship में था और Gleeden पर भी Active था',
+    hinglish_title: 'Mera Boyfriend 3 Saal Se Relationship Mein Tha — Gleeden Par Bhi Active Tha',
     angle: 'Hindi first-person story. Girlfriend discovers long-term boyfriend on affair platform. Emotional, raw Hindi narrative with real dialogues. How she found out using TraceThem.',
     keywords: ['boyfriend gleeden par hai', 'partner dating app par hai kaise pata karein', 'cheating boyfriend hindi'],
     lang: 'hi',
@@ -219,6 +222,7 @@ const TOPICS = [
   {
     slug: 'nri-dulha-fraud-hindi',
     title: 'NRI दूल्हा निकला धोखेबाज — शादी से 10 दिन पहले सच सामने आया',
+    hinglish_title: 'NRI Dulha Nikla Dhokhebaaz — Shaadi Se 10 Din Pehle Sach Saamne Aaya',
     angle: 'NRI groom fraud in Hindi. Family discovers groom had active dating profiles and possibly another relationship abroad. How they found out. What you should check before agreeing to any rishta.',
     keywords: ['nri dulha fraud hindi', 'nri se shaadi se pehle check karo', 'nri groom verify kaise karein'],
     lang: 'hi',
@@ -226,6 +230,7 @@ const TOPICS = [
   {
     slug: 'biwi-dating-app-par-thi-hindi',
     title: 'पत्नी Tinder और Bumble दोनों पर थी — 4 साल की शादी के बाद सच का सामना',
+    hinglish_title: 'Patni Tinder aur Bumble Dono Par Thi — 4 Saal Ki Shaadi Ke Baad',
     angle: 'husband discovers wife on multiple dating apps after 4 years of marriage. Hindi emotional narrative. How it destroyed and rebuilt the family. How Indian men can silently verify without confrontation.',
     keywords: ['biwi tinder par hai', 'patni dating app check hindi', 'wife cheating kaise pata karein hindi'],
     lang: 'hi',
@@ -233,6 +238,7 @@ const TOPICS = [
   {
     slug: 'jamai-ki-secret-life-hindi',
     title: 'जमाई की Secret Digital Life — ससुराल को शादी के बाद पता चला',
+    hinglish_title: 'Jamai Ki Secret Digital Life — Sasural Ko Shaadi Ke Baad Pata Chala',
     angle: 'in-laws discover son-in-law had active dating profiles after marriage. Hindi family drama. What signals they missed. How Indian families can verify jamai ke baare mein before or after marriage.',
     keywords: ['jamai ki jaanch kaise karein', 'son in law tinder hindi', 'shaadi ke baad jamai check'],
     lang: 'hi',
@@ -240,6 +246,7 @@ const TOPICS = [
   {
     slug: 'catfishing-matrimonial-hindi',
     title: 'BharatMatrimony पर वो "Doctor" निकला Fraud — असली कहानी',
+    hinglish_title: 'BharatMatrimony Par Wo "Doctor" Nikla Fraud — Asli Kahani',
     angle: 'Hindi catfishing story on BharatMatrimony. Fake doctor profile. Family loses money, gets emotionally devastated. How to verify any matrimonial match in 60 seconds before it is too late.',
     keywords: ['bharatmatrimony fake profile hindi', 'matrimonial site catfishing hindi', 'rishta fraud kaise pata karein'],
     lang: 'hi',
@@ -247,6 +254,7 @@ const TOPICS = [
   {
     slug: 'khud-ko-search-karo-hindi',
     title: 'खुद को Google पर Search करो — आपको जो मिलेगा वो डरा देगा',
+    hinglish_title: 'Khud Ko Google Par Search Karo — Jo Milega Wo Dara Dega',
     angle: 'Hindi self-trace article. Person discovers their own old profiles, photos, dating accounts still visible. Privacy horror. Wipe My Trace pitch in Hindi. Who can see your digital past.',
     keywords: ['khud ko online search karo', 'apna digital footprint kaise hatayein', 'purana dating profile delete kaise karein'],
     lang: 'hi',
@@ -256,6 +264,7 @@ const TOPICS = [
   {
     slug: 'pati-ka-affair-daftar-mein-hindi',
     title: 'पति का Affair Office में था — "Late Work" का सच जो मुझे 2 साल बाद पता चला',
+    hinglish_title: 'Pati Ka Affair Office Mein Tha — "Late Work" Ka Sach 2 Saal Baad Pata Chala',
     angle: 'Antarvasna-style Hindi confession story. Wife narrates how she slowly suspected her husband\'s late nights and office trips. The signs she ignored. How a digital check on a colleague\'s name revealed everything. First-person, intimate, raw Hindi narrative. Ends with TraceThem as the tool she used.',
     keywords: ['pati ka affair kaise pata kare', 'husband office affair hindi', 'pati dhoka de raha hai', 'husband cheating signs hindi'],
     lang: 'hi',
@@ -263,6 +272,7 @@ const TOPICS = [
   {
     slug: 'bhabhi-tinder-par-thi-hindi',
     title: 'भाभी Tinder पर थीं — और भैया को कुछ नहीं पता था | एक सच्ची कहानी',
+    hinglish_title: 'Bhabhi Tinder Par Thi — Aur Bhaiya Ko Kuch Nahi Pata Tha',
     angle: 'Classic Indian bhabhi affair narrative in Hindi. Intimate family betrayal story. Younger brother accidentally discovers bhabhi\'s Tinder profile. Moral dilemma — tell bhaiya or stay silent. How he verified it was really her. Antarvasna-style confessional tone, emotionally heavy.',
     keywords: ['bhabhi ka affair', 'bhabhi tinder par thi', 'bhabhi cheating story hindi', 'bhabhi dhoka de rahi hai'],
     lang: 'hi',
@@ -270,6 +280,7 @@ const TOPICS = [
   {
     slug: 'shaadi-ke-baad-affair-hindi-kahani',
     title: 'शादी के 1 साल बाद पता चला — पत्नी का Affair शादी से पहले से चल रहा था',
+    hinglish_title: 'Shaadi Ke 1 Saal Baad Pata Chala — Patni Ka Affair Pehle Se Chal Raha Tha',
     angle: 'Husband discovers wife\'s pre-marriage relationship never ended and continued after marriage. Hindi emotional narrative. The pain of discovering the relationship was a lie from the start. How he found the proof through digital channels. Very popular search angle in India.',
     keywords: ['shaadi ke baad affair pata chala', 'patni ka pehle se affair tha', 'wife old boyfriend affair india hindi', 'shaadi ke baad dhoka'],
     lang: 'hi',
@@ -277,6 +288,7 @@ const TOPICS = [
   {
     slug: 'delhi-mein-pati-tinder-par-hindi',
     title: 'Delhi में रहने वाले पति Tinder पर थे — मुझे WhatsApp notification से पता चला',
+    hinglish_title: 'Delhi Mein Pati Tinder Par The — WhatsApp Notification Se Pata Chala',
     angle: 'Delhi-specific story. Wife gets a WhatsApp forward about Tinder matches with her husband\'s photo. The shock, verification, confrontation. City-targeted for Delhi NCR audience. Hindi narrative.',
     keywords: ['delhi pati tinder par', 'delhi husband cheating app', 'delhi mein partner check karo', 'delhi relationship fraud'],
     lang: 'hi',
@@ -284,6 +296,7 @@ const TOPICS = [
   {
     slug: 'mumbai-rishta-fraud-hindi',
     title: 'Mumbai का वो "Doctor" जो Shaadi.com पर मिला — असल में कुछ और ही निकला',
+    hinglish_title: 'Mumbai Ka Wo "Doctor" Jo Shaadi.com Par Mila — Asal Mein Kuch Aur Nikla',
     angle: 'Mumbai girl meets Shaadi.com match claiming to be a doctor. Family verification reveals fraud — fake profession, possibly already married. Mumbai matrimonial fraud is rampant. How to verify any Mumbai rishta before meeting.',
     keywords: ['mumbai matrimonial fraud hindi', 'mumbai shaadi fraud', 'mumbai rishta check karo', 'mumbai doctor fake profile matrimonial'],
     lang: 'hi',
@@ -291,6 +304,7 @@ const TOPICS = [
   {
     slug: 'bangalore-tech-boy-double-life',
     title: 'Bangalore का "Software Engineer" — Tinder पर था, Gleeden पर भी, और तीन लड़कियों को Date कर रहा था',
+    hinglish_title: 'Bangalore Ka "Software Engineer" — Tinder, Gleeden Par Tha, Teen Ladkiyon Ko Date Kar Raha Tha',
     angle: 'Bangalore IT sector dating fraud story in Hindi. Tech guy maintaining multiple relationships simultaneously across apps. Very common in Bangalore. How his online presence revealed the double life. City-targeted for Bangalore audience.',
     keywords: ['bangalore software engineer cheating', 'bangalore tinder fraud hindi', 'bangalore IT boy dating multiple girls', 'check bangalore boyfriend hindi'],
     lang: 'hi',
@@ -298,6 +312,7 @@ const TOPICS = [
   {
     slug: 'hyderabad-nri-dulha-fraud-hindi',
     title: 'Hyderabad का NRI दूल्हा — USA में girlfriend थी, यहाँ शादी कर रहा था',
+    hinglish_title: 'Hyderabad Ka NRI Dulha — USA Mein Girlfriend Thi, Yahan Shaadi Kar Raha Tha',
     angle: 'Hyderabad NRI groom fraud. Active girlfriend in the US, simultaneously pursuing arranged marriage in Hyderabad. How the family discovered his social media footprint. City-targeted Hindi story for Hyderabad/Telangana audience.',
     keywords: ['hyderabad nri dulha fraud', 'hyderabad NRI marriage fraud hindi', 'hyderabad rishta check karo', 'NRI dulha Hyderabad verify'],
     lang: 'hi',
@@ -305,6 +320,7 @@ const TOPICS = [
   {
     slug: 'jaipur-ladki-catfishing-hindi',
     title: 'Jaipur की उस लड़की ने जो बताया वो सब झूठ था — BharatMatrimony पर हुआ Catfishing',
+    hinglish_title: 'Jaipur Ki Us Ladki Ne Jo Bataya Wo Sab Jhooth Tha — BharatMatrimony Catfishing',
     angle: 'Male perspective — Jaipur man gets catfished on BharatMatrimony by a fake female profile. The story of how he was deceived, money lost, dignity hurt. How to verify any match in Jaipur before meeting. City-targeted for Rajasthan audience.',
     keywords: ['jaipur matrimonial fraud hindi', 'jaipur catfishing bharatmatrimony', 'jaipur rishta fake profile', 'rajasthan shaadi fraud'],
     lang: 'hi',
@@ -313,10 +329,8 @@ const TOPICS = [
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function todaySlot() {
-  const now = new Date();
-  const dateStr = now.toISOString().slice(0, 10);
-  const hour = now.getUTCHours(); // UTC for GitHub Actions consistency
-  const slot = hour < 12 ? 'am' : 'pm';
+  const dateStr = process.env.DATE_OVERRIDE || new Date().toISOString().slice(0, 10);
+  const slot = process.env.SLOT_OVERRIDE || (new Date().getUTCHours() < 12 ? 'am' : 'pm');
   return { dateStr, slot };
 }
 
@@ -437,7 +451,7 @@ function wrapInPage(title, slug, content, topic, dateStr) {
 <meta name="keywords" content="${topic.keywords.join(', ')}">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${desc}">
-<meta property="og:image" content="${SITE_URL}/blog-og.php?title=${encodeURIComponent(title)}">
+<meta property="og:image" content="${SITE_URL}/blog-og.php?title=${encodeURIComponent(topic.hinglish_title || title)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="${SITE_URL}/blog/${slug}.html">
